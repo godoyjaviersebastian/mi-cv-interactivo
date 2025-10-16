@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javier Sebastián Godoy - Perfil Profesional Interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutrals (Slate, Beige, Teal Accent) -->
+    <!-- Application Structure Plan: A single-page portfolio designed as an interactive dashboard. It starts with a summary and key highlights, followed by an interactive timeline to explore career history without information overload, and concludes with a visual representation of skills via a bar chart. This structure prioritizes user engagement and focused exploration over a static, linear CV format. -->
+    <!-- Visualization & Content Choices: Summary -> HTML cards with icons for quick scanning. Experience -> Interactive JS-powered timeline to show progression and details on demand. Skills -> Chart.js horizontal bar chart to visually group and display competencies. All choices avoid static lists in favor of interactive, engaging components, using only HTML/CSS/JS/Canvas. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #334155;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 500px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold text-slate-800">Javier Sebastián Godoy</h1>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#summary" class="text-slate-600 hover:text-teal-600 transition-colors">Resumen</a>
+                <a href="#timeline" class="text-slate-600 hover:text-teal-600 transition-colors">Trayectoria</a>
+                <a href="#skills" class="text-slate-600 hover:text-teal-600 transition-colors">Habilidades</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <section id="summary" class="mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-teal-700 mb-4">Especialista en e-Learning, Comunicación y Estrategia Digital</h2>
+            <p class="max-w-3xl mx-auto text-center text-slate-600 mb-12">
+                Profesional con más de una década de experiencia multifacética en la gestión de tecnología educativa y el desarrollo de estrategias de comunicación y negocio. Busco aplicar mi blend único de habilidades técnicas, estratégicas y comunicacionales en proyectos que requieran eficiencia operativa y un fuerte impacto digital.
+            </p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200/50">
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">Gestión Moodle</h3>
+                    <p class="text-slate-600 text-sm">Creación, modificación y mantenimiento del entorno virtual durante más de 10 años, asegurando una experiencia de aprendizaje fluida.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200/50">
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">Producción Multimedia</h3>
+                    <p class="text-slate-600 text-sm">Experiencia en conferencias vía Streaming, diseño gráfico, fotografía y edición de video para comunicación institucional.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200/50">
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">Estrategia Digital</h3>
+                    <p class="text-slate-600 text-sm">Manejo de redes sociales y campañas de mailing para potenciar el alcance y la interacción de la comunidad.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200/50">
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">Visión de Negocio</h3>
+                    <p class="text-slate-600 text-sm">Habilidad en consultoría, planificación y diagramación de estrategias de servicio y venta para diversos sectores.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-800 mb-4">Trayectoria Profesional Interactiva</h2>
+            <p class="max-w-3xl mx-auto text-center text-slate-600 mb-12">
+                Haz clic en cada etapa para explorar los detalles de mi carrera profesional, desde mis inicios en el soporte técnico hasta mi especialización actual en e-Learning y gestión de campus virtuales.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-8 md:gap-12">
+                <div class="w-full md:w-1/3">
+                    <div id="timeline-nav" class="flex md:flex-col justify-around md:justify-start md:space-y-4 bg-white p-4 rounded-xl shadow-md border border-slate-200/50">
+                    </div>
+                </div>
+
+                <div id="timeline-content" class="w-full md:w-2/3 bg-white p-8 rounded-xl shadow-lg border border-slate-200/50 min-h-[300px]">
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-800 mb-4">Visualización de Habilidades</h2>
+            <p class="max-w-3xl mx-auto text-center text-slate-600 mb-12">
+                Este gráfico agrupa mis competencias clave en tres áreas principales. Pasa el cursor sobre cada barra para ver la habilidad específica. La combinación de estas capacidades me permite abordar proyectos complejos desde una perspectiva integral.
+            </p>
+            <div class="bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-lg border border-slate-200/50">
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-white mt-20">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>Perfil Profesional Interactivo de Javier Sebastián Godoy</p>
+            <p class="text-sm text-slate-400 mt-2">Diseñado para una exploración dinámica de mi trayectoria y habilidades.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const timelineData = [
+                {
+                    id: 'elearning',
+                    period: '2014 – Presente',
+                    title: 'Especialista en e-Learning y Multimedia',
+                    company: 'Universidad Nacional de Lanús (UNLa)',
+                    details: [
+                        '<strong>Administración del Campus Virtual (Moodle):</strong> Responsable de la creación y modificación de aulas virtuales, asegurando la operatividad 24/7.',
+                        '<strong>Gestión de Usuarios y Soporte:</strong> Alta, baja y matriculación de miles de alumnos y docentes. Resolución proactiva de inconvenientes de acceso y usabilidad.',
+                        '<strong>Producción de Contenido Digital:</strong> Coordinación y realización de Conferencias vía Streaming, garantizando la calidad técnica y audiovisual.',
+                        '<strong>Estrategia de Comunicación:</strong> Liderazgo en el manejo de Redes Sociales y campañas de Mailing, complementado con Diseño Gráfico y Edición de Video.'
+                    ]
+                },
+                {
+                    id: 'cultural',
+                    period: '2006 – 2020',
+                    title: 'Gestor y Productor Cultural',
+                    company: 'Actividad Independiente / Proyectos',
+                    details: [
+                        'Organización y producción integral de eventos artísticos y culturales a gran escala.',
+                        'Desempeño como operador y productor musical en diversos proyectos, manejando tanto la parte técnica como la creativa.',
+                        'Colaboración con artistas y colectivos para el desarrollo de la escena cultural local.'
+                    ]
+                },
+                {
+                    id: 'tech',
+                    period: '1998 – 2006',
+                    title: 'Técnico y Encargado de Sector Informático',
+                    company: 'Empresa de Consultoría y Soporte',
+                    details: [
+                        '<strong>Liderazgo Técnico:</strong> Encargado del sector informático y manejo de personal a cargo, coordinando tareas de soporte y mantenimiento.',
+                        '<strong>Consultoría Estratégica:</strong> Planificación y diagramación de estrategias de servicio y venta de soluciones tecnológicas para particulares y empresas.',
+                        '<strong>Soporte Avanzado:</strong> Diagnóstico y reparación de PC, Notebooks y Redes, asegurando la continuidad operativa de los clientes.'
+                    ]
+                }
+            ];
+
+            const timelineNav = document.getElementById('timeline-nav');
+            const timelineContent = document.getElementById('timeline-content');
+
+            function updateContent(itemId) {
+                const item = timelineData.find(d => d.id === itemId);
+                if (!item) return;
+
+                timelineContent.innerHTML = `
+                    <h3 class="text-2xl font-bold text-teal-700 mb-2">${item.title}</h3>
+                    <p class="text-sm font-medium text-slate-500 mb-1">${item.company}</p>
+                    <p class="text-sm font-medium text-slate-500 mb-6">${item.period}</p>
+                    <ul class="space-y-4 text-slate-600">
+                        ${item.details.map(d => `
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-3 mt-1">&#10003;</span>
+                                <span>${d}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+
+                document.querySelectorAll('.timeline-btn').forEach(btn => {
+                    btn.classList.remove('bg-teal-600', 'text-white', 'shadow-lg');
+                    btn.classList.add('bg-slate-100', 'text-slate-700');
+                    if (btn.dataset.id === itemId) {
+                        btn.classList.add('bg-teal-600', 'text-white', 'shadow-lg');
+                        btn.classList.remove('bg-slate-100', 'text-slate-700');
+                    }
+                });
+            }
+
+            timelineData.forEach(item => {
+                const button = document.createElement('button');
+                button.className = 'timeline-btn w-full text-left p-4 rounded-lg transition-all duration-300 font-medium';
+                button.dataset.id = item.id;
+                button.innerHTML = `
+                    <span class="block text-sm opacity-80">${item.period}</span>
+                    <span class="block font-bold">${item.title}</span>
+                `;
+                button.addEventListener('click', () => updateContent(item.id));
+                timelineNav.appendChild(button);
+            });
+
+            updateContent(timelineData[0].id);
+
+            const skillsData = {
+                labels: [
+                    'Administración Moodle', 'Soporte E-Learning', 'Producción de Streaming',
+                    'Diseño Gráfico', 'Edición de Video', 'Community Management', 'Email Marketing',
+                    'Planificación de Eventos', 'Consultoría de Ventas', 'Liderazgo de Equipos', 'Soporte Técnico IT'
+                ],
+                datasets: [
+                    {
+                        label: 'E-Learning y Técnica',
+                        data: [10, 10, 9, 0, 0, 0, 0, 0, 0, 0, 8],
+                        backgroundColor: 'rgba(15, 118, 110, 0.7)',
+                        borderColor: 'rgba(15, 118, 110, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Comunicación y Multimedia',
+                        data: [0, 0, 0, 9, 9, 8, 8, 0, 0, 0, 0],
+                        backgroundColor: 'rgba(45, 212, 191, 0.7)',
+                        borderColor: 'rgba(45, 212, 191, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Gestión y Estrategia',
+                        data: [0, 0, 0, 0, 0, 0, 0, 9, 8, 8, 0],
+                        backgroundColor: 'rgba(51, 65, 85, 0.7)',
+                        borderColor: 'rgba(51, 65, 85, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: skillsData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true,
+                            display: false,
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                font: {
+                                    size: 12,
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label || '';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
